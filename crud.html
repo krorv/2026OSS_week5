@@ -4,6 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            background-color: #e9d8d7;
+            margin: 20px;
+            max-width: 800px;
+            padding: 20px;
+        }
+        h2 {
+            color: black
+        }
+        div{
+            margin-bottom: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 5px;
+        }
+        table {
+            background-color: white;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }   
+        .edit-btn {
+         background-color: #d5618e;  
+        color: white;
+        }
+        .delete-btn {
+        background-color: #d5618e; 
+         color: white;
+        }
+        tr:hover {
+        background-color: #f0f0f0;
+        }
+        button:hover {
+        opacity: 0.8;
+        cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h2>친구 추가 / 수정</h2>
@@ -65,8 +112,8 @@
         생일: "1998-05-05"
     }
     ];
-      let editingIndex = -1;//수정 중,추가 하는 중
-    function addFriend(){
+        let editingIndex = -1;//수정 중,추가 하는 중
+        function addFriend(){
         const name = document.querySelector("#name").value;
         const relation = document.querySelector("#relation").value;
         const phone = document.querySelector("#phone").value;
@@ -129,8 +176,8 @@
         document.querySelector("#email").value = "";
         document.querySelector("#birthday").value = "";
         displayFriends();
-    }
-    function editFriend(index){
+        }
+        function editFriend(index){
         editingIndex = index;
         const friend = friends[index];
         document.querySelector("#name").value = friend.name;
@@ -174,8 +221,8 @@
             <td>${friend.전화번호}</td>
             <td>${friend.이메일}</td>
             <td>${friend.생일}</td>
-            <td><button onclick="editFriend(${index})">수정</button></td>
-            <td><button onclick="deleteFriend(${index})">삭제</button></td>
+            <td><button class="edit-btn" onclick="editFriend(${index})">수정</button></td>
+            <td><button class="delete-btn" onclick="deleteFriend(${index})">삭제</button></td>
         </tr>   
     `;
 });
