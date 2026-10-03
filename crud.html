@@ -65,12 +65,17 @@
         생일: "1998-05-05"
     }
     ];
+      let editingIndex = -1;//수정 중,추가 하는 중
     function addFriend(){
         const name = document.querySelector("#name").value;
         const relation = document.querySelector("#relation").value;
         const phone = document.querySelector("#phone").value;
         const email = document.querySelector("#email").value;
         const birthday = document.querySelector("#birthday").value;
+        if(!name || !relation || !phone || !email || !birthday){
+            alert("모든 필드를 입력해주세요.");
+            return;
+        }
 
         const newFriend = {
             name: name,
@@ -79,15 +84,34 @@
             이메일: email,
             생일: birthday
         };
+        if (editingIndex === -1) {
+          friends.push(newFriend);
+        } else {
+          friends[editingIndex] = newFriend;
+          editingIndex = -1;
+        }
         friends.push(newFriend);
+        document.querySelector("#name").value = "";
+        document.querySelector("#relation").value = "";
+        document.querySelector("#phone").value = "";
+        document.querySelector("#email").value = "";
+        document.querySelector("#birthday").value = "";
         displayFriends();
     }
     function editFriend(index){
-        const name = document.querySelector("#name").value;
-        const relation = document.querySelector("#relation").value;
-        const phone = document.querySelector("#phone").value;
-        const email = document.querySelector("#email").value;
-        const birthday = document.querySelector("#birthday").value;
+        editingIndex = index;
+        const friend = friends[index];
+        document.querySelector("#name").value = friend.name;
+        document.querySelector("#relation").value = friend.관계;
+        document.querySelector("#phone").value = friend.전화번호;
+        document.querySelector("#email").value = friend.이메일;
+        document.querySelector("#birthday").value = friend.생일;
+    
+
+        if(!name || !relation || !phone || !email || !birthday){
+            alert("모든 필드를 입력해주세요.");
+            return;
+        }
 
         friends[index] = {
             name: name,
@@ -96,10 +120,13 @@
             이메일: email,
             생일: birthday
         };
-        friends.splice(index,1,friends[index]);
+        displayFriends();
     }
     function deleteFriend(index){
-        friends.splice(index,1);
+        if(confirm("정말 삭제하시겠습니까?")){
+            friends.splice(index, 1);
+            displayFriends();
+        }
     }
     function displayFriends(){
         const list = document.querySelector("#friendList");
