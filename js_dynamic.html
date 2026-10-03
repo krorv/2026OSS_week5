@@ -4,8 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    </style>
+    <script>
+        function delFruits(e){
+            e.target.parentElement.remove();
+    
+        }
+        window.addEventListener("load", function() {
+            const btn1 = document.querySelector("#btn1");
+            btn1.addEventListener("click",clickme);
+            btn1.remove();
+        });
+        
+        function clickme(){
+            const div1=document.querySelector("#div");
+            div1.innerText="버튼이 클릭되었습니다";
+            const hello = document.createElement("p");
+            hello.textContent="버튼이 클릭되었습니다";
+            div1.appendChild(hello);            
+        }
+        const fruits = document.querySelector("#inputs");
+
+        window.addEventListener("load",function(e){
+            const fruits=document.querySelector("#inputs");
+            const addbtn=document.querySelector("#addbtn");
+            const list =document.querySelector("#list");
+            addbtn.addEventListener("click",function(){
+                let flist=fruits.value.split(",");
+                for(let i=0; i<flist.length; i++){
+                    const li=document.createElement("li");
+                    li.textContent=flist[i];
+                    list.appendChild(li);
+
+                    const btn=document.createElement("button");
+                    btn.textContent="삭제";
+                    li.appendChild(btn);
+                    btn.addEventListener("click",delFruits);
+                }
+            });
+        });
+        
+    </script>
 </head>
 <body>
+    <div id="hiddenDiv1" style="display: none;">
+    <div id="div">Hello world!</div>
+    <button id="btn1">clickMe</button>
+    </div>
+    <input type="text" id="inputs" placeholder="과일을 입력하세요">
+    <button id="addbtn">추가</button>
+    <ul id="list">
+    </ul>
+    <button id="delete">삭제</button>
     
+
 </body>
 </html>
