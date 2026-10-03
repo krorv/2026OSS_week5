@@ -7,5 +7,99 @@
 </head>
 <body>
     
+    <script>
+        let friends = [
+    {
+        name: "홍길동",
+        관계: "친구",
+        전화번호: "010-1234-5678",
+        이메일: "example@email.com",
+        생일: "1990-01-01"
+    },
+    {
+        name: "김길동",
+        관계: "가족",
+        전화번호: "010-2345-6789",
+        이메일: "kim@email.com",
+        생일: "1992-02-02"
+    },
+    {
+        name: "박길동",
+        관계: "친구",
+        전화번호: "010-3456-7890",
+        이메일: "park@email.com",
+        생일: "1994-03-03"
+    },
+    {
+        name: "이길동",
+        관계: "친구",
+        전화번호: "010-4567-8901",
+        이메일: "lee@email.com",
+        생일: "1996-04-04"
+    },
+    {
+        name: "최길동",
+        관계: "가족",
+        전화번호: "010-5678-9012",
+        이메일: "choi@email.com",
+        생일: "1998-05-05"
+    }
+    ];
+    function addFriend(){
+        const name = document.querySelector("#name").value;
+        const relation = document.querySelector("#relation").value;
+        const phone = document.querySelector("#phone").value;
+        const email = document.querySelector("#email").value;
+        const birthday = document.querySelector("#birthday").value;
+
+        const newFriend = {
+            name: name,
+            관계: relation,
+            전화번호: phone,
+            이메일: email,
+            생일: birthday
+        };
+        friends.push(newFriend);
+        displayFriends();
+    }
+    function editFriend(index){
+        const name = document.querySelector("#name").value;
+        const relation = document.querySelector("#relation").value;
+        const phone = document.querySelector("#phone").value;
+        const email = document.querySelector("#email").value;
+        const birthday = document.querySelector("#birthday").value;
+
+        friends[index] = {
+            name: name,
+            관계: relation,
+            전화번호: phone,
+            이메일: email,
+            생일: birthday
+        };
+        friends.splice(index,1,friends[index]);
+    }
+    function deleteFriend(index){
+        friends.splice(index,1);
+    }
+    function displayFriends(){
+        const list = document.querySelector("#friendList");
+        let html = "";
+      friends.forEach((friend, index) => { // 1. (friend, index) 바로 뒤에 => 붙이기
+        html += `
+        <tr>
+            <td>${friend.name}</td>
+            <td>${friend.관계}</td>
+            <td>${friend.전화번호}</td>
+            <td>${friend.이메일}</td>
+            <td>${friend.생일}</td>
+            <td><button onclick="editFriend(${index})">수정</button></td>
+            <td><button onclick="deleteFriend(${index})">삭제</button></td>
+        </tr>   
+    `;
+});
+    list.innerHTML = html;
+    }
+    displayFriends();
+    </script>
 </body>
 </html>
