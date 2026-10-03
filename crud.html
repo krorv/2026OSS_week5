@@ -6,7 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h2>친구 추가 / 수정</h2>
+    <div>
+        <input type="text" id="name" placeholder="이름">
+        <input type="text" id="relation" placeholder="관계">
+        <input type="text" id="phone" placeholder="전화번호">
+        <input type="email" id="email" placeholder="이메일">
+        <input type="date" id="birthday">
+        <button onclick="addFriend()">추가</button>
+    </div>
+
+    <hr>
+    <h2>친구 목록</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>이름</th><th>관계</th><th>전화번호</th><th>이메일</th><th>생일</th><th>수정</th><th>삭제</th>
+            </tr>
+        </thead>
+        <tbody id="friendList">
+        </tbody>
+    </table>
     <script>
         let friends = [
     {
