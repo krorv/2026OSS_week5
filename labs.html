@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    </style>
+</head>
+<body>
+    <h1>덧셈 계산기</h1>
+    <input type="text" id="num1" size="4">
+    <input type="text" id="num2" size="4">
+    <button id="addBtn">+</button>
+    <input id="result" readonly>
+
+    <!--클릭버튼 실습-->
+    <h3>Inline JS</h3>
+    <button id="clickBtn" onclick="clickMe()">Click Me</button>
+
+    <h3>Intertnal JS</h3>
+    <button id="clickBtn">Click Me</button> <!-- 오류: id="clickBtn" 중복, id는 문서 내 고유해야 함 (예: id="clickBtn2") -->
+
+    <script>
+        function add(){
+        const num1=document.querySelector("#num1").value;
+        const num2=document.querySelector("#num2").value;
+        const result=Number(num1)+Number(num2);
+        document.querySelector("#result").value=result;
+    }
+        document.querySelector("#addBtn").addEventListener("click", add);
+
+        function clickMe(){
+            const btn = document.querySelector("#clickBtn");
+            btn.innerText="clicked!";
+            alert("버튼이 클릭되었습니다");
+        }
+        
+        const clickBtn2 = document.querySelector("#clickBtn2"); // 오류: HTML에 id="clickBtn2" 요소가 없음, 위 버튼 id를 "clickBtn2"로 바꿔야 함
+        clickBtn.addEventListener("click",function(){}) // 오류1: clickBtn이라는 변수가 없음, clickBtn2를 사용해야 함 / 오류2: 콜백 함수가 비어있음, clickMe를 전달해야 함
+        
+        window.addEventListener("load",function(){
+            const clickBtn2 = document.querySelector("#clickBtn2"); // 오류: HTML에 id="clickBtn2" 요소가 없음, 위 버튼 id를 "clickBtn2"로 바꿔야 함
+            lickBtn.addEventListener("click",function(){}) // 오류1: clickBtn이라는 변수가 없음, clickBtn2를 사용해야 함 / 오류2: 콜백 함수가 비어있음, clickMe를 전달해야 함
+        });
+
+        window.addEventListener("load",function(){
+            const btn1=document.querySelector("#clickBtn2");
+            btn1.addEventListener("click",clickMe);
+        });
+
+        function checkFrom(e){
+            const username = document.querySelector("#username");
+            if(username.value==''){
+                alert('이름을 입력하세요');
+                username.focus();
+                e.preventDefault();}
+        }//브라우저가 닫고 다시 실행해야 콜백함수 그러나 window.onload로 감싸면 브라우저가 닫고 다시 실행하지 않아도 됨 순서에 연연하지 않고 실행됨
+        function checkbutton(e){
+            const btn1=document.querySelector("#btn1");
+            const btn2=document.querySelector("#btn2")
+        }
+        </script>
+        <textarea name="checkFrom" id="memo" cols="30" rows="10"></textarea>
+        <form method="post">
+            <input type="text" id="username" placeholder="이름을 입력하세요">
+        </form>
+
+        <button id="btn1">Click ME!</button>
+        <form action="login_ok.html" method="post" onsubmit="return checkFrom(event)">
+            <input type="text" name="id" placeholder="아이디">
+            <input type="password" name="pw" placeholder="비밀번호">
+            <button type="submit">로그인</button>
+        </form> 
+        <button id="btn1">Click Me!</button>
+        <button id="btn2">Click Me!</button>
+
+</body>
+</html>
