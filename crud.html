@@ -76,6 +76,38 @@
             alert("모든 필드를 입력해주세요.");
             return;
         }
+        if(!name){
+            alert("이름을 입력해주세요.");
+            return;
+        }
+        if(!name.length>=2){
+            alert("이름은 최소 2글자 이상이어야 합니다."); 
+            return;
+        }
+        if(!relation){
+            alert("관계를 입력해주세요.");
+            return;
+        }
+        if(!phone){
+            alert("전화번호를 입력해주세요.");
+            return;
+        }
+        if(!phone.length>=9){
+            alert("전화번호는 최소 9자리 이상이어야 합니다.");
+            return;
+        }
+        if(!email){
+            alert("이메일을 입력해주세요.");
+            return;
+        }
+        if(!email.includes("@")){
+            alert("이메일 형식이 올바르지 않습니다.");
+            return;
+        }
+        if(!birthday){
+            alert("생일을 입력해주세요.");
+            return;
+        }   
 
         const newFriend = {
             name: name,
@@ -85,7 +117,7 @@
             생일: birthday
         };
         if (editingIndex === -1) {
-          friends.push(newFriend);
+            friends.push(newFriend);
         } else {
           friends[editingIndex] = newFriend;
           editingIndex = -1;
@@ -106,13 +138,16 @@
         document.querySelector("#phone").value = friend.전화번호;
         document.querySelector("#email").value = friend.이메일;
         document.querySelector("#birthday").value = friend.생일;
-    
+        const name = document.querySelector("#name").value;
+        const relation = document.querySelector("#relation").value;
+        const phone = document.querySelector("#phone").value;
+        const email = document.querySelector("#email").value;
+        const birthday = document.querySelector("#birthday").value;
 
         if(!name || !relation || !phone || !email || !birthday){
             alert("모든 필드를 입력해주세요.");
             return;
         }
-
         friends[index] = {
             name: name,
             관계: relation,
